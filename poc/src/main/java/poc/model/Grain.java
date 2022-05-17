@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,14 +34,23 @@ public class Grain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String grainId;
+	
 	@Column(name = "grainname")
 	private String grainName;
+	
 	@Column(name = "grainmoisture")
 	private String grainMoisture;
+	
 	@Column(name = "grainbagquantity")
 	private String grainBagQuantity;
+	
 	@Column(name = "graininwarddate")
 	private Date grainInwardDate;
+	
+	@ManyToOne
+	@JoinColumn(name="farmer_Id")
+	@JsonBackReference
+	private Farmer farmer;
 
 	
 }
