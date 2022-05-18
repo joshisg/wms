@@ -3,7 +3,6 @@ package poc.controller;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,22 +24,19 @@ import poc.repository.StorageBillRepository;
 @RestController
 @RequestMapping("/wms")
 public class StorageBillController {
-	
+	final int perBagRate=6;
 	@Autowired
 	StorageBillRepository storageBillRepository;
 	
 	@Autowired
 	FarmerRepository farmerRepository;
-
-	@PostMapping("/farmer/{farmerId}/{grainId}/{grainBagQuantity}")
-	public ResponseEntity<StorageBill> createStorageBill(@PathVariable("farmerId") String farmerId, @PathVariable("grainId") String grainId, 
-			@PathVariable("grainBagQuantity") int grainBagQuantity) {
+	
+	
+	@PostMapping("/storagecalculator/{farmerId}/{grainBagQuantity}")
+	public ResponseEntity<StorageBill> createStorageBilling(@PathVariable("farmerId") String farmerId, 
+			@PathVariable("grainBagQuantity") int grainBagQuantity, @RequestBody StorageBill storageBill) {
 		
-		System.out.println("farmerId is : "+ farmerId);
-		System.out.println("grainId is : "+ grainId);
-		System.out.println("grainBagQuantity is : "+ grainBagQuantity);
-		
-		StorageBill storageBill = new StorageBill();
+			
 		Optional<Farmer> farmerData = farmerRepository.findById(farmerId);
 		if (farmerData.isPresent()) {
 			Farmer farmer1 = farmerData.get();
@@ -47,20 +44,18 @@ public class StorageBillController {
 				List<Grain> grainsList=farmer1.getGrains();
 				for(Grain grain: grainsList) {
 					
-					if(grain.getGrainId().equals(grainId)) {
-						int perBagRate=6;
+					if(grain.getGrainId().equals(storageBill.getGrain().getGrainId())) {
 						int oneDayBill= perBagRate*grainBagQuantity;
-						Date inDate=grain.getGrainInwardDate();
-								LocalDate localInDate=inDate.toInstant()
-							      .atZone(ZoneId.systemDefault())
-							      .toLocalDate();
-						LocalDate datee=LocalDate.now();
 						
-						long duration=ChronoUnit.DAYS.between(localInDate, datee);
+						LocalDate inwardDate =grain.getGrainInwardDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						LocalDate outwardDate=storageBill.getGrainOutwardDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						long duration=ChronoUnit.DAYS.between(inwardDate, outwardDate);
+						System.out.println("duration time is" +duration);
 						long storagebillAmount = oneDayBill*duration;
-						storageBill.setFarmer(farmer1);
-						storageBill.setStorageBillAmount(storagebillAmount);
-						storageBill.setGrainOutwardDate(java.sql.Date.valueOf(datee));
+						if(duration>=1) {
+							storageBill.setStorageBillAmount(storagebillAmount);
+							}
+						storageBill.setStorageBillAmount(oneDayBill);
 					}
 				}
 		}

@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -39,11 +38,11 @@ public class StorageBill {
 	
 	@Column(name = "billamount")
 	private long storageBillAmount;
-	
-		
+			
+	// new enhacement for grain bill tracking
 	@ManyToOne
-	@JoinColumn(name="farmer_Id")
+	@JoinColumn(name="grain_Id")
 	@JsonBackReference
-	private Farmer farmer;
+	private Grain grain;
 
 }

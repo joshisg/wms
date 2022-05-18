@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -50,10 +49,6 @@ public class Farmer {
 	@JsonManagedReference
 	private List<Grain> grains;
 	
-	// new enhancement for billing system
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "farmer", fetch=FetchType.LAZY)
-	@JsonManagedReference
-	private List<StorageBill> bills;
 	
 	
 	
