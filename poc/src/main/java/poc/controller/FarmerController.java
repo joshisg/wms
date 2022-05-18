@@ -82,5 +82,22 @@ public class FarmerController {
 		}
 
 	}
+	
+	
+	
+	
+	/*
+	 * @PutMapping("/farmer/{farmerId}") public ResponseEntity<Farmer>
+	 * createfarmerBill(@PathVariable("farmerId") String farmerId,
+	 * 
+	 * @RequestBody Farmer farmer) { Optional<Farmer> farmerData =
+	 * farmerRepository.findById(farmerId); if (farmerData.isPresent()) { Farmer
+	 * farmer1 = farmerData.get(); farmer1.setFarmerName(farmer.getFarmerName());
+	 * farmer1.setFarmerMobileNo(farmer.getFarmerMobileNo());
+	 * farmer1.setAadharNo(farmer.getAadharNo()); farmer1.setCity(farmer.getCity());
+	 * farmer1.setState(farmer.getState()); farmer1.setZipcode(farmer.getZipcode());
+	 * return new ResponseEntity<>(farmerRepository.save(farmer1), HttpStatus.OK); }
+	 * else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); } }
+	 */
 
 }
