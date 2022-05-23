@@ -26,6 +26,10 @@ public class FarmerController {
 	@Autowired
 	FarmerRepository farmerRepository;
 
+	/*
+	 * @owner Sushant Joshi This api will create the new farmer in the application
+	 * and returns the same object
+	 */
 	@PostMapping("/farmer")
 	public ResponseEntity<Farmer> createFarmer(@RequestBody Farmer farmer) {
 		System.out.println(farmer.getFarmerName());
@@ -65,14 +69,14 @@ public class FarmerController {
 			@RequestBody Farmer farmer) {
 		Optional<Farmer> farmerData = farmerRepository.findById(farmerId);
 		if (farmerData.isPresent()) {
-			Farmer farmer1 = farmerData.get();
-			farmer1.setFarmerName(farmer.getFarmerName());
-			farmer1.setFarmerMobileNo(farmer.getFarmerMobileNo());
-			farmer1.setAadharNo(farmer.getAadharNo());
-			farmer1.setCity(farmer.getCity());
-			farmer1.setState(farmer.getState());
-			farmer1.setZipcode(farmer.getZipcode());
-			return new ResponseEntity<>(farmerRepository.save(farmer1), HttpStatus.OK);
+			Farmer farmerDetails = farmerData.get();
+			farmerDetails.setFarmerName(farmer.getFarmerName());
+			farmerDetails.setFarmerMobileNo(farmer.getFarmerMobileNo());
+			farmerDetails.setAadharNo(farmer.getAadharNo());
+			farmerDetails.setCity(farmer.getCity());
+			farmerDetails.setState(farmer.getState());
+			farmerDetails.setZipcode(farmer.getZipcode());
+			return new ResponseEntity<>(farmerRepository.save(farmerDetails), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -89,20 +93,17 @@ public class FarmerController {
 
 	}
 	
-	
-	
-	
 	/*
 	 * @PutMapping("/farmer/{farmerId}") public ResponseEntity<Farmer>
 	 * createfarmerBill(@PathVariable("farmerId") String farmerId,
 	 * 
 	 * @RequestBody Farmer farmer) { Optional<Farmer> farmerData =
 	 * farmerRepository.findById(farmerId); if (farmerData.isPresent()) { Farmer
-	 * farmer1 = farmerData.get(); farmer1.setFarmerName(farmer.getFarmerName());
-	 * farmer1.setFarmerMobileNo(farmer.getFarmerMobileNo());
-	 * farmer1.setAadharNo(farmer.getAadharNo()); farmer1.setCity(farmer.getCity());
-	 * farmer1.setState(farmer.getState()); farmer1.setZipcode(farmer.getZipcode());
-	 * return new ResponseEntity<>(farmerRepository.save(farmer1), HttpStatus.OK); }
+	 * farmerDetails = farmerData.get(); farmerDetails.setFarmerName(farmer.getFarmerName());
+	 * farmerDetails.setFarmerMobileNo(farmer.getFarmerMobileNo());
+	 * farmerDetails.setAadharNo(farmer.getAadharNo()); farmerDetails.setCity(farmer.getCity());
+	 * farmerDetails.setState(farmer.getState()); farmerDetails.setZipcode(farmer.getZipcode());
+	 * return new ResponseEntity<>(farmerRepository.save(farmerDetails), HttpStatus.OK); }
 	 * else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); } }
 	 */
 
