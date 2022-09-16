@@ -1,6 +1,6 @@
 # wms
 poc for warehouse management system
-I am trying to create the generic poc for stroe grains storage business.
+I am trying to create the generic poc for store grains storage business.
 
 I started this poc because initially I am planning to start my own grane storage warehouse
 so I thought why not we will try automated bill calculation system. So I have decided to meet the peoples who are alreday
