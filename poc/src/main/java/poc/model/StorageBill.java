@@ -33,6 +33,38 @@ public class StorageBill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String storageBillId;
 	
+	public String getStorageBillId() {
+		return storageBillId;
+	}
+
+	public void setStorageBillId(String storageBillId) {
+		this.storageBillId = storageBillId;
+	}
+
+	public Date getGrainOutwardDate() {
+		return grainOutwardDate;
+	}
+
+	public void setGrainOutwardDate(Date grainOutwardDate) {
+		this.grainOutwardDate = grainOutwardDate;
+	}
+
+	public long getStorageBillAmount() {
+		return storageBillAmount;
+	}
+
+	public void setStorageBillAmount(long storageBillAmount) {
+		this.storageBillAmount = storageBillAmount;
+	}
+
+	public Grain getGrain() {
+		return grain;
+	}
+
+	public void setGrain(Grain grain) {
+		this.grain = grain;
+	}
+
 	@Column(name = "grainoutwarddate")
 	private Date grainOutwardDate;
 	

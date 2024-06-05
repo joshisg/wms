@@ -48,6 +48,70 @@ public class Farmer {
 	@Column
 	private String city;
 	
+	public String getFarmerId() {
+		return farmerId;
+	}
+
+	public void setFarmerId(String farmerId) {
+		this.farmerId = farmerId;
+	}
+
+	public String getFarmerName() {
+		return farmerName;
+	}
+
+	public void setFarmerName(String farmerName) {
+		this.farmerName = farmerName;
+	}
+
+	public String getFarmerMobileNo() {
+		return farmerMobileNo;
+	}
+
+	public void setFarmerMobileNo(String farmerMobileNo) {
+		this.farmerMobileNo = farmerMobileNo;
+	}
+
+	public String getAadharNo() {
+		return aadharNo;
+	}
+
+	public void setAadharNo(String aadharNo) {
+		this.aadharNo = aadharNo;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public List<Grain> getGrains() {
+		return grains;
+	}
+
+	public void setGrains(List<Grain> grains) {
+		this.grains = grains;
+	}
+
 	@Column
 	private String state;
 	

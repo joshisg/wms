@@ -47,6 +47,62 @@ public class Grain {
 	@Column(name = "grainbagquantity")
 	private String grainBagQuantity;
 	
+	public String getGrainId() {
+		return grainId;
+	}
+
+	public void setGrainId(String grainId) {
+		this.grainId = grainId;
+	}
+
+	public String getGrainName() {
+		return grainName;
+	}
+
+	public void setGrainName(String grainName) {
+		this.grainName = grainName;
+	}
+
+	public String getGrainMoisture() {
+		return grainMoisture;
+	}
+
+	public void setGrainMoisture(String grainMoisture) {
+		this.grainMoisture = grainMoisture;
+	}
+
+	public String getGrainBagQuantity() {
+		return grainBagQuantity;
+	}
+
+	public void setGrainBagQuantity(String grainBagQuantity) {
+		this.grainBagQuantity = grainBagQuantity;
+	}
+
+	public Date getGrainInwardDate() {
+		return grainInwardDate;
+	}
+
+	public void setGrainInwardDate(Date grainInwardDate) {
+		this.grainInwardDate = grainInwardDate;
+	}
+
+	public Farmer getFarmer() {
+		return farmer;
+	}
+
+	public void setFarmer(Farmer farmer) {
+		this.farmer = farmer;
+	}
+
+	public List<StorageBill> getStorageBill() {
+		return storageBill;
+	}
+
+	public void setStorageBill(List<StorageBill> storageBill) {
+		this.storageBill = storageBill;
+	}
+
 	@Column(name = "graininwarddate")
 	private Date grainInwardDate;
 	
