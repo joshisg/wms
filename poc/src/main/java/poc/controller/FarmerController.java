@@ -32,9 +32,9 @@ public class FarmerController {
 	 */
 	@PostMapping("/farmer")
 	public ResponseEntity<Farmer> createFarmer(@RequestBody Farmer farmer) {
-		//System.out.println(farmer.getFarmerName());
-		//System.out.println(farmer.getAadharNo());
-		//System.out.println(farmer.getFarmerMobileNo());
+		System.out.println(farmer.getFarmerName());
+		System.out.println(farmer.getAadharNo());
+		System.out.println(farmer.getFarmerMobileNo());
 		
 		farmerRepository.save(farmer);
 		return new ResponseEntity<>(farmer, HttpStatus.CREATED);
