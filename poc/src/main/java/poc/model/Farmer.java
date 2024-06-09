@@ -31,98 +31,68 @@ import lombok.ToString;
 @ToString
 @Data
 public class Farmer {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String farmerId;
-	
-	@Column(name = "farmername")
-	private String farmerName;
-	
-	@Column(name = "mobileno", unique = true)
-	@NotBlank(message = "Name is mandatory")
-	private String farmerMobileNo;
-	
-	@Column(name = "aadharnumber", unique = true)
-	private String aadharNo;
-	
-	@Column
-	private String city;
-	
-	public String getFarmerId() {
-		return farmerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String contact;
+    private String address;
+    private String email;
+
+    @OneToMany(mappedBy = "farmer")
+    private List<GrainStorage> grainStorages;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setFarmerId(String farmerId) {
-		this.farmerId = farmerId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getFarmerName() {
-		return farmerName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFarmerName(String farmerName) {
-		this.farmerName = farmerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getFarmerMobileNo() {
-		return farmerMobileNo;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setFarmerMobileNo(String farmerMobileNo) {
-		this.farmerMobileNo = farmerMobileNo;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
-	public String getAadharNo() {
-		return aadharNo;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAadharNo(String aadharNo) {
-		this.aadharNo = aadharNo;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getCity() {
-		return city;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getState() {
-		return state;
+	public List<GrainStorage> getGrainStorages() {
+		return grainStorages;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setGrainStorages(List<GrainStorage> grainStorages) {
+		this.grainStorages = grainStorages;
 	}
 
-	public String getZipcode() {
-		return zipcode;
-	}
+    //@OneToMany(mappedBy = "farmer")
+    //private List<Loan> loans;
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public List<Grain> getGrains() {
-		return grains;
-	}
-
-	public void setGrains(List<Grain> grains) {
-		this.grains = grains;
-	}
-
-	@Column
-	private String state;
-	
-	@Column
-	private String zipcode;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "farmer", fetch=FetchType.LAZY)
-	@JsonManagedReference
-	private List<Grain> grains;
-	
-	
-	
-	
+    // Getters and setters
+    
 }
